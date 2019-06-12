@@ -10,7 +10,13 @@ bytes transferred and status
 
 """
 
-import sys
+import sys,argparse
+
+class ApacheUsage(object):
+    def __init__(self):
+        pass
+
+
 
 def apache_output(line):
     split_line = line.split()
@@ -42,20 +48,18 @@ def final_report(logfile):
 
 
 if __name__ == "__main__":
-    if not len(sys.argv) > 1:
-       data = sys.stdin.readlines()
-       try:
-           data[0][3]
-       except:
-           print (__doc__)
-           sys.exit(1)
-    #infile_name = sys.argv[1]
-    #try:
-    #    infile = open(infile_name, 'r')
-    #except IOError:
-    #    print ("You must specify a valid file to parse")
-    #    print (__doc__)
-    #    sys.exit(1)
+    parser = argparse.ArgumentParser ( description="Parse Apache Logs ")
+    parser.add_argument ( "F" , help="File Name to parse" , nargs='+' )
+    parser.add_argument ( "-T" , "--DateTimeToParse" , help="the The date and time to parse format is DD/MM/YYYY HH:MM:SS " )
+    args = parser.parse_args ()
+
+    File_Name = args.F
+    try:
+        infile = open(File_Name, 'r')
+    except IOError:
+        print ("You must specify a valid file to parse")
+        print (__doc__)
+        sys.exit(1)
     log_report = final_report(data)
     #log_report = final_report(infile)
     print (log_report)
