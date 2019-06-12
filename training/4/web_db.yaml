@@ -1,0 +1,57 @@
+---
+- hosts: webservers
+  become: yes 
+ 
+  vars:
+   http_port: 80
+   doc_dir: ansible/
+   doc_root: /var/www/html/ansible
+   max_clients: 5
+
+  vars_prompt:
+   - name: username
+     prompt: what is your name 
+ 
+  tasks:
+  - name: ensure appache is installed
+    yum: name=httpd state=present
+    when: ansible_os_family == "redhat"
+  
+  - name: start apache
+    service: name=httpd enabled=yes state=started
+
+
+  - name : Deploy Configuration file 
+    template: src=templates/httpd.j2 dest=/etc/httpd/conf.d/sample.conf
+    notify:
+     - restart Apache 
+
+  
+  - name: Compy Site Files
+    template: src=templates/index.j2  dest={{ doc_root }}/index.html
+
+
+  handlers:
+    - name: restart Apache
+      service: name=httpd state=restarted
+ 
+
+
+- hosts: dbservers
+  become: yes
+
+  tasks:
+  - name: ensure mysql installed
+    yum: name=mysql-server state=present
+    when: ansible_os_family == "redhat"
+  
+  - name: start mysql
+    service: name=mysqld state=started enabled=yes
+
+
+- hosts: webservers:dbservers
+  become: yes
+
+  tasks:
+  - name: stop iptables
+    service: name=iptables, state=stopped enabled=no

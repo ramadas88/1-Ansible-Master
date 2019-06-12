@@ -1,0 +1,114 @@
+    1  yum install ansible
+    2  ansible --help
+    3  hostname
+    4  ifcon
+    5  ifconfig
+    6  ip a
+    7  route -n
+    8  routef --help
+    9  routef
+   10  routel 
+   11  routel  --help
+   12  mkdir training
+   13  cd training/
+   14  mkdit 1
+   15  mkdir 1
+   16  cd 1/
+   17  vi inventory
+   18  ansible -i inventory  -u vagrant -m ping -k
+   19  ansible 192.168.10.12 -i inventory  -u vagrant -m ping -k
+   20  ssh 192.168.10.12
+   21  ifcon
+   22  ip a
+   23  ping  192.168.10.12
+   24  ping  192.168.10.11
+   25  ansible 192.168.10.11 -i inventory  -u vagrant -m ping -k
+   26  vi inventory 
+   27  ansible 192.168.10.11 -i inventory  -u vagrant -m ping -k
+   28  ansible all  -i inventory  -u vagrant -m ping -k
+   29  pwd
+   30  cd ..
+   31  mdkir 2
+   32  mkdir 2
+   33  cd 2/
+   34  mkdir production
+   35  cd production/
+   36  mkdir group_vars
+   37  cd group_vars/
+   38  touch all
+   39  touch db
+   40  cd ..
+   41  mkdir host_vars
+   42  cd host_vars/
+   43  touch web1
+   44  cd ..
+   45  touch inventory
+   46  vi inventory 
+   47  vim group_vars/all 
+   48  vi  group_vars/all 
+   49  ansible 192.168.0.11 -i inventory  -m user -a "name={{username}} password=12345654"
+   50  vim inventory 
+   51  vi  inventory 
+   52  ansible 192.168.0.11 -i inventory  -m user -a "name={{username}} password=12345654"
+   53  vi  inventory 
+   54  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654"
+   55  ansible 192.168.0.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant
+   56  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant
+   57  ansible all  -i inventory  -u vagrant -m ping -k
+   58  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant -k
+   59  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant -k --sudo
+   60  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant -k --become
+   61  ansible-doc -l
+   62  ansible-doc -s acl
+   63  cd training/
+   64  ls -l
+   65  cd 2/
+   66  ls -l
+   67  cd production/
+   68  ls -l
+   69  cat inventory 
+   70  ansible 192.168.10.11 -i inventory -m yum  -a "name=httpd state=present" --become 
+   71  ansible 192.168.10.11 -i inventory -m yum  -a "name=httpd state=present" --become  -u vagrant -k
+   72  ansible 192.168.10.11 -i inventory -m setup -u vagrant -k
+   73  ansible 192.168.10.11 -i inventory -m setup -a "filter=ansible_eth*"-u vagrant -k
+   74  ansible 192.168.10.11 -i inventory -m setup -a "filter=ansible_eth*" -u vagrant -k
+   75  ansible 192.168.10.11 -i inventory -m setup -a "filter=ansible_mounts*" -u vagrant -k
+   76  ansible all -i inventory -m setup  --tree ./setup
+   77  ansible all -i inventory -m setup  --tree ./setup - vagrant -k 
+   78  ansible all -i inventory -m setup  --tree ./setup -u vagrant -k 
+   79  ls -l
+   80  ll setup/
+   81  ll setup/192.168.10.11 
+   82  cat  setup/192.168.10.11 
+   83  cd ..
+   84  mkdir 3
+   85  cd 3
+   86  ls -l
+   87  vim inventory
+   88  vi  inventory
+   89  vi web_db.yaml
+   90  ansible-playbook web_db.yaml 
+   91  clear
+   92  ansible-playbook web_db.yaml 
+   93  vi web_db.yaml
+   94  ansible-playbook web_db.yaml 
+   95  vi web_db.yaml
+   96  ansible-playbook web_db.yaml 
+   97  cat  web_db.yaml
+   98  vim  web_db.yaml
+   99  cat inventory 
+  100  vim  web_db.yaml
+  101  vi web_db.yaml
+  102  ansible-playbook web_db.yaml 
+  103  vi  inventory 
+  104  vim ansible.cfg
+  105  vi  ansible.cfg
+  106  ansible-playbook web_db.yaml 
+  107  cat ../2/production/inventory 
+  108  ping 192.168.10.11
+  109  vi  inventory 
+  110  ansible-playbook web_db.yaml 
+  111  vi  inventory 
+  112  ansible-playbook web_db.yaml 
+  113  history 
+  114  history  > ~root/historycontent
