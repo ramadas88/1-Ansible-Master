@@ -85,7 +85,7 @@ if __name__ == "__main__":
     File_Name = args.FileName
     Date = args.DateTimeToParse
 
-    infile.close ()
+    #infile.close ()
     result = ApacheUsage(File_Name,Date)
     #log_report = final_report(File_Name)
     #log_report = final_report(infile)
