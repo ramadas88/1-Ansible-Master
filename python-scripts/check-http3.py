@@ -53,7 +53,7 @@ if __name__ == "__main__":
     parser.add_argument ( "-T" , "--DateTimeToParse" , help="the The date and time to parse format is DD/MM/YYYY HH:MM:SS " )
     args = parser.parse_args ()
 
-    File_Name = args.F
+    File_Name = args.FileName
     try:
         infile = open(File_Name, 'r')
     except IOError:
