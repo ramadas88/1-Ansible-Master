@@ -13,8 +13,37 @@ bytes transferred and status
 import sys,argparse
 
 class ApacheUsage(object):
-    def __init__(self):
-        pass
+    def __init__(self,File_Name,Date=False):
+        self.File_Name =File_Name
+        self.Date = Date
+        try :
+            infile = open ( self.File_Name , 'r' )
+        except IOError :
+            print ("You must specify a valid file to parse")
+            print (__doc__)
+            sys.exit ( 1 )
+        for line in infile :
+            split_line = line.split ()
+            print split_line
+            if self.Date:
+                print split_line[0]
+                print split_line [ 0 ]
+
+            else:
+                print split_line [ 0 ]
+                print split_line [ 0 ]
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -54,15 +83,13 @@ if __name__ == "__main__":
     args = parser.parse_args ()
 
     File_Name = args.FileName
-    try:
-        infile = open(File_Name, 'r')
-    except IOError:
-        print ("You must specify a valid file to parse")
-        print (__doc__)
-        sys.exit(1)
-    log_report = final_report(data)
+    Date = args.DateTimeToParse
+
+    infile.close ()
+    result = ApacheUsage(File_Name,Date)
+    #log_report = final_report(File_Name)
     #log_report = final_report(infile)
-    print (log_report)
+    #print (log_report)
     #infile.close()
 
 
