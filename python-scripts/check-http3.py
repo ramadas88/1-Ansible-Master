@@ -49,7 +49,7 @@ def final_report(logfile):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser ( description="Parse Apache Logs ")
-    parser.add_argument ( "F" , help="File Name to parse" , nargs='+' )
+    parser.add_argument ( "-F" , "--FileName", help="File Name to parse" , default="/var/log/httpd/access_log" )
     parser.add_argument ( "-T" , "--DateTimeToParse" , help="the The date and time to parse format is DD/MM/YYYY HH:MM:SS " )
     args = parser.parse_args ()
 
