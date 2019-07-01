@@ -1,0 +1,7 @@
+---
+# vars file for db
+#
+#
+db_name: hakase-db
+db_user: hakase
+db_pass: '*C960D382DB42E57D3BAC33891CF87900DCB1A869'

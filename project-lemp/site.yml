@@ -1,0 +1,10 @@
+---
+
+- hosts: lemp
+  remote_user: ram
+  become: yes
+
+  roles:
+   - common
+   - web
+   - db

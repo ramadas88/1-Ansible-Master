@@ -1,0 +1,7 @@
+---
+# vars file for web
+
+
+php_version: 5.3
+domain_name: hakase-labs.io
+

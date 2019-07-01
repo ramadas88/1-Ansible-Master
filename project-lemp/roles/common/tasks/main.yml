@@ -1,0 +1,6 @@
+---
+# tasks file for common
+
+- name: Change the time zone 
+  timezone:
+   name: Asia/Jakarta
