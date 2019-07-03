@@ -22,26 +22,26 @@
   local_action:
     module: zabbix_host
     server_url: http://192.168.0.105/zabbix
-    login_user: zabbix
-    login_password: admin
+    login_user: admin
+    login_password: zabbix
     host_name: "{{ ansible_nodename }}"
     visible_name: ExampleName
-    description: My ExampleHost Description
+    # description: My ExampleHost Description
     host_groups:
-      - Example group1
+      - Linux servers
     link_templates:
-      - Example template1
+      - Template OS Linux
     status: enabled
     state: present
     inventory_mode: manual
-    inventory_zabbix:
-      tag: "{{ your_tag }}"
-      alias: "{{ your_alias }}"
-      notes: "Special Informations: {{ your_informations | default('None') }}"
-      location: "{{ your_location }}"
-      site_rack: "{{ your_site_rack }}"
-      os: "{{ ansible_distribution }}"
-      hardware: "{{ ansible_virtualization_type }}"
+    #inventory_zabbix:
+    #  tag: "{{ your_tag }}"
+    #  alias: "{{ your_alias }}"
+    #  notes: "Special Informations: {{ your_informations | default('None') }}"
+    #  location: "{{ your_location }}"
+    #  site_rack: "{{ your_site_rack }}"
+    #  os: "{{ ansible_distribution }}"
+    #  hardware: "{{ ansible_virtualization_type }}"
     interfaces:
       - type: 1
         main: 1
@@ -50,6 +50,19 @@
         dns: ""
         port: 10050
 
+
+
+- name: Modify Zabbix config file  
+  lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    regexp: '^Server='
+    line: Server=192.168.0.105
+
+- name: Start service zabbix-agent, if not started
+  service:
+    name: zabbix-agent
+    state: started
+    enabled: yes
 
 - name: Install epel-release
   yum:
