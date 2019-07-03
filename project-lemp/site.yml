@@ -1,10 +1,11 @@
 ---
 
-- hosts: lemp
+- hosts: lemp,local
   remote_user: ram
   become: yes
 
   roles:
-   - common
-   - web
-   - db
+   - printdetails
+   #- common
+   #- web
+   #- db
