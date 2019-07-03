@@ -1,0 +1,629 @@
+    1  yum install ansible
+    2  ansible --help
+    3  hostname
+    4  ifcon
+    5  ifconfig
+    6  ip a
+    7  route -n
+    8  routef --help
+    9  routef
+   10  routel 
+   11  routel  --help
+   12  mkdir training
+   13  cd training/
+   14  mkdit 1
+   15  mkdir 1
+   16  cd 1/
+   17  vi inventory
+   18  ansible -i inventory  -u vagrant -m ping -k
+   19  ansible 192.168.10.12 -i inventory  -u vagrant -m ping -k
+   20  ssh 192.168.10.12
+   21  ifcon
+   22  ip a
+   23  ping  192.168.10.12
+   24  ping  192.168.10.11
+   25  ansible 192.168.10.11 -i inventory  -u vagrant -m ping -k
+   26  vi inventory 
+   27  ansible 192.168.10.11 -i inventory  -u vagrant -m ping -k
+   28  ansible all  -i inventory  -u vagrant -m ping -k
+   29  pwd
+   30  cd ..
+   31  mdkir 2
+   32  mkdir 2
+   33  cd 2/
+   34  mkdir production
+   35  cd production/
+   36  mkdir group_vars
+   37  cd group_vars/
+   38  touch all
+   39  touch db
+   40  cd ..
+   41  mkdir host_vars
+   42  cd host_vars/
+   43  touch web1
+   44  cd ..
+   45  touch inventory
+   46  vi inventory 
+   47  vim group_vars/all 
+   48  vi  group_vars/all 
+   49  ansible 192.168.0.11 -i inventory  -m user -a "name={{username}} password=12345654"
+   50  vim inventory 
+   51  vi  inventory 
+   52  ansible 192.168.0.11 -i inventory  -m user -a "name={{username}} password=12345654"
+   53  vi  inventory 
+   54  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654"
+   55  ansible 192.168.0.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant
+   56  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant
+   57  ansible all  -i inventory  -u vagrant -m ping -k
+   58  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant -k
+   59  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant -k --sudo
+   60  ansible 192.168.10.11 -i inventory  -m user -a "name={{username}} password=12345654" -u vagrant -k --become
+   61  ansible-doc -l
+   62  ansible-doc -s acl
+   63  cd training/
+   64  ls -l
+   65  cd 2/
+   66  ls -l
+   67  cd production/
+   68  ls -l
+   69  cat inventory 
+   70  ansible 192.168.10.11 -i inventory -m yum  -a "name=httpd state=present" --become 
+   71  ansible 192.168.10.11 -i inventory -m yum  -a "name=httpd state=present" --become  -u vagrant -k
+   72  ansible 192.168.10.11 -i inventory -m setup -u vagrant -k
+   73  ansible 192.168.10.11 -i inventory -m setup -a "filter=ansible_eth*"-u vagrant -k
+   74  ansible 192.168.10.11 -i inventory -m setup -a "filter=ansible_eth*" -u vagrant -k
+   75  ansible 192.168.10.11 -i inventory -m setup -a "filter=ansible_mounts*" -u vagrant -k
+   76  ansible all -i inventory -m setup  --tree ./setup
+   77  ansible all -i inventory -m setup  --tree ./setup - vagrant -k 
+   78  ansible all -i inventory -m setup  --tree ./setup -u vagrant -k 
+   79  ls -l
+   80  ll setup/
+   81  ll setup/192.168.10.11 
+   82  cat  setup/192.168.10.11 
+   83  cd ..
+   84  mkdir 3
+   85  cd 3
+   86  ls -l
+   87  vim inventory
+   88  vi  inventory
+   89  vi web_db.yaml
+   90  ansible-playbook web_db.yaml 
+   91  clear
+   92  ansible-playbook web_db.yaml 
+   93  vi web_db.yaml
+   94  ansible-playbook web_db.yaml 
+   95  vi web_db.yaml
+   96  ansible-playbook web_db.yaml 
+   97  cat  web_db.yaml
+   98  vim  web_db.yaml
+   99  cat inventory 
+  100  vim  web_db.yaml
+  101  vi web_db.yaml
+  102  ansible-playbook web_db.yaml 
+  103  vi  inventory 
+  104  vim ansible.cfg
+  105  vi  ansible.cfg
+  106  ansible-playbook web_db.yaml 
+  107  cat ../2/production/inventory 
+  108  ping 192.168.10.11
+  109  vi  inventory 
+  110  ansible-playbook web_db.yaml 
+  111  vi  inventory 
+  112  ansible-playbook web_db.yaml 
+  113  history 
+  114  history  > ~root/historycontent
+  115  cat ../../historycontent 
+  116  clear
+  117  init 0
+  118  clear
+  119  cd training/3/
+  120  ls -l
+  121  cd ..
+  122  ls -l
+  123  cp -r 3  4
+  124  ls -l
+  125  cd 4/
+  126  ls -l
+  127  clear
+  128  ls -l
+  129  vi inventory 
+  130  vi web_db.yaml 
+  131  ls -l
+  132  mkdir templats
+  133  cd templats/
+  134  vim index.j2
+  135  vi index.j2
+  136  vi ../web_db.yaml 
+  137  ls -l
+  138  vi httpd.j2
+  139  cd ..
+  140  ansible-playbook web_db.yaml 
+  141  vi web_db.yaml 
+  142  ansible-playbook web_db.yaml 
+  143  vi web_db.yaml 
+  144  ansible-playbook web_db.yaml 
+  145  vi web_db.yaml 
+  146  ansible-playbook web_db.yaml 
+  147  ls -l templates/httpd.j2
+  148  ls -l templates
+  149  mv templats templates
+  150  ansible-playbook web_db.yaml 
+  151  vi web_db.yaml 
+  152  ansible-playbook web_db.yaml 
+  153  init 0
+  154  find /home -regextype posix-extended -regex ".*(\.txt|\.log)"
+  155  find /etc/ -regextype posix-extended -regex ".*(\.txt|\.log)"
+  156  find /etc/ -iname  ".*(\.txt|\.log)"
+  157  find /etc/ -iname  ".*.txt"
+  158  find /etc/ -regex ".*(\.txt|\.log)"
+  159  find /etc/ -iname  '*.txt'
+  160  find /etc/ -iname  ".*[0-9]{2}-[0-9]{2}-[0-9]{4}.*"
+  161  yum install boto3
+  162  yum install python-boto3
+  163  ansible-vault create aws_key.yml
+  164  ls -l
+  165  mkdir AWS-Deployment
+  166  mv  aws_key.yml  AWS-Deployment/
+  167  ls -l
+  168  vi historycontent 
+  169  vi original-ks.cfg 
+  170  ls training/
+  171  ls training/1/
+  172  ls training/1/inventory 
+  173  cat  training/1/inventory 
+  174  cd AWS-Deployment/
+  175  ls -l
+  176  ls -al
+  177  ls -l
+  178  mkdir ec2-1
+  179  mv aws_key.yml ec2-1/
+  180  cd ec2-1/
+  181  ls -l
+  182  vi hosts
+  183  vi aws_provisioning.yml
+  184  vi createkey.yml
+  185  ansible-playbook -i hosts createkey.yml 
+  186  yum install python-boto
+  187  ansible-playbook -i hosts createkey.yml 
+  188  yum install python-boto -vvv
+  189  ansible-playbook -i hosts createkey.yml -vvv
+  190  mkdir -pv ~/.aws
+  191  vi ~/.aws/credentials
+  192  vi ~/.aws/config
+  193  vi check-boto.py
+  194  python check-boto.py 
+  195  ansible-playbook -i hosts createkey.yml -vvv
+  196  cat ~/.aws/credentials
+  197  exit
+  198  env
+  199  ansible-playbook -i hosts createkey.yml -vvv
+  200  cd AWS-Deployment/ec2-1/
+  201  ansible-playbook -i hosts createkey.yml -vvv
+  202  ls -l "/root/.ansible/tmp/ansible-tmp-1560167484.96-80042305611315/"
+  203  vi createkey.yml 
+  204  cat ~/.aws/config 
+  205  vi createkey.yml 
+  206  ls -l "/root/.ansible/tmp/ansible-tmp-1560167484.96-80042305611315/"
+  207  ansible-playbook -i hosts createkey.yml -vvv
+  208  vi createkey.yml 
+  209  ansible-playbook -i hosts createkey.yml -vvv
+  210  vi createkey.yml 
+  211  ansible-playbook -i hosts createkey.yml -vvv
+  212  ansible-v
+  213  ansible -v
+  214  ansible --version
+  215  yum update ansible
+  216  yum upgrade ansible
+  217  yum list ansible
+  218  yum update ansible
+  219  yum upgrade ansible
+  220  yum list ansible
+  221  vi createkey.yml 
+  222  ansible-playbook -i hosts createkey.yml -vvv
+  223  vi createkey.yml 
+  224  ansible-playbook -i hosts createkey.yml -vvv
+  225  ls -l
+  226  ansible-playbook -i hosts aws_provisioning.yml 
+  227  nev
+  228  env
+  229  env | grep AWS_ACCESS_KEY
+  230  cat ~/.aws/credentials 
+  231  env
+  232  printenv 
+  233  env | grep AWS_ACCESS_KEY_ID
+  234  env | grep -i AWS_ACCESS_KEY_ID
+  235  env | grep -i AWS
+  236  printenv | grep -i AWS
+  237  set 
+  238  aws ec2
+  239  yum install aws
+  240  clear
+  241  yum install python-pip3
+  242  yum install python-pip
+  243  yum install python*
+  244  curl -O https://bootstrap.pypa.io/get-pip.py
+  245  python get-pip.py 
+  246  pip install awscli
+  247  aws ec2 create-key-pair --key-name MYAnsibleKey1 --query 'KeyMaterial' --output text > MyKeyPair.pem
+  248  ls -l
+  249  vi vi ~/.boto
+  250   vi ~/.boto
+  251  vi vi
+  252  mv vi  ~/.boto
+  253  vi ~/.boto
+  254  cat ~/.aws/credentials 
+  255  vi ~/.boto
+  256  vi spinvm.yml
+  257  ansible-playbook spinvm.yml -e instance_type=t2.micro -e security_group=WebServers -e image=ami-0080e4c5bc078760e -e region=us-east-1 -e keypair=MYAnsibleKey1 -e count=1
+  258  yum install httpd
+  259  service httpd start 
+  260  service httpd status 
+  261  curl -I http://127.0.0.1
+  262  curl -I http://localhost
+  263  httpd -S
+  264  vi /var/www/html/index.html
+  265  curl -I http://localhost
+  266  curl  http://localhost
+  267  exit
+  268  ls -l
+  269  ptyhon -v
+  270  python -v
+  271  clear
+  272  ls -l
+  273  mkdir python-scripts
+  274  cd python-scripts/
+  275  ls -l
+  276  vi check-http.py
+  277  python  check-http.py
+  278  vi check-http.py
+  279  python  check-http.py
+  280  tail -f /var/log/httpd/access_log 
+  281  python  check-http.py
+  282  vi check-http.py
+  283  python  check-http.py
+  284  tail -f /var/log/httpd/access_log 
+  285  vi check-http2.py
+  286  python  check-http2.py
+  287  python  check-http2.py /var/log/httpd/access_log 
+  288  vi check-http2.py
+  289  tail -f /var/log/httpd/access_log 
+  290  vi check-http2.py
+  291  python  check-http2.py /var/log/httpd/access_log 
+  292  vi check-http2.py
+  293  python  check-http2.py /var/log/httpd/access_log 
+  294  vi check-http2.py
+  295  python  check-http2.py /var/log/httpd/access_log 
+  296  vi check-http2.py
+  297  python  check-http2.py /var/log/httpd/access_log 
+  298  vi check-http2.py
+  299  tail -f /var/log/httpd/access_log 
+  300  cat  /var/log/httpd/access_log  | python check-http2.py 
+  301  python check-http2.py <   /var/log/httpd/access_log  
+  302  vi check-http2.py
+  303  cat  /var/log/httpd/access_log  | python check-http2.py 
+  304  vi check-http2.py
+  305  cat  /var/log/httpd/access_log  | python check-http2.py 
+  306  vi check-http2.py
+  307  cat  /var/log/httpd/access_log  | python check-http2.py 
+  308  vi check-http2.py
+  309  cat  /var/log/httpd/access_log  | python check-http2.py 
+  310  vi check-http2.py
+  311  cat  /var/log/httpd/access_log  | python check-http2.py 
+  312  vi check-http2.py
+  313  cp  check-http2.py check-http3.py
+  314  vi check-http3.py 
+  315  cat  /var/log/httpd/access_log  | python check-http2.py 
+  316  cat  /var/log/httpd/access_log  | python check-http3.py 
+  317  vi check-http3.py 
+  318  cat  /var/log/httpd/access_log  | python check-http3.py 
+  319  ssh-keygen -t rsa -b 4096 
+  320  cat /root/.ssh/id_rsa
+  321  cat /root/.ssh/
+  322  ls -l /root/.ssh/
+  323  ls -l /root/.ssh/id_rsa.pub 
+  324  cat  /root/.ssh/id_rsa.pub 
+  325  hostname
+  326  ls -al
+  327  cd 
+  328  ls -al
+  329  git clone git@github.com:ramadas88/1-Ansible-Master.git
+  330  yum install git
+  331  git clone git@github.com:ramadas88/1-Ansible-Master.git
+  332  ls -l
+  333  ls -al
+  334  mv AWS-Deployment historycontent python-scripts training 1-Ansible-Master
+  335  ls -l
+  336  cd 1-Ansible-Master/
+  337  ls -l
+  338  vi README.md 
+  339  ls -al
+  340  ls -l AWS-Deployment/
+  341  ls -l AWS-Deployment/ec2-1/
+  342  vi  AWS-Deployment/ec2-1/aws_key.yml 
+  343  rm   AWS-Deployment/ec2-1/aws_key.yml 
+  344  ls -l
+  345  cd python-scripts/
+  346  ls -l
+  347  cd ..
+  348  ls -l
+  349  git status 
+  350  git add *
+  351  git commit -m "Sending Files 1"
+  352  git config --global user.email  "ramadas88@gmail.com"
+  353  git commit -m "Sending Files 1"
+  354  git push origin master 
+  355  rpm -qa |grep git
+  356  rpm -ql git-1.8.3.1-20.el7.x86_64
+  357  rpm -
+  358  rpm --info  git-1.8.3.1-20.el7.x86_64
+  359  rpm   git-1.8.3.1-20.el7.x86_64 --info
+  360  ls -l /root/.ssh/id_rsa
+  361  cat  /root/.ssh/id_rsa
+  362  ls -l
+  363  git pull
+  364  cd python-scripts/
+  365  ls -l
+  366  vim check-http3.py 
+  367  vi check-http3.py 
+  368  python  check-http3.py 
+  369  python  check-http3.py  -F /var/log/httpd/error_log 
+  370  python  check-http3.py   /var/log/httpd/access_log 
+  371  ls -l 
+  372  ls -l  /var/log/httpd/access_log
+  373  git pull
+  374  python  check-http3.py 
+  375  git pull ; python check-http3.py 
+  376  set
+  377  echo $set
+  378  echo set
+  379  set
+  380  printenv 
+  381  env
+  382  set
+  383  print set
+  384  env
+  385  set | more
+  386  clear
+  387  dd if=/dev/zero of /swapfile bs=1024 count=1048576
+  388  dd if=/dev/zero of=/swapfile bs=1024 count=1048576
+  389  free -m
+  390  df -h
+  391  dd if=/dev/zero of=/tmp/swapfile bs=1024 count=1048576
+  392  ls -l /tmp/
+  393  ls -lh /tmp/
+  394  dd if=/dev/zero of=/tmp/swapfile1 bs=1024 count=1
+  395  ls -lh /tmp/
+  396  dd if=/dev/zero of=/tmp/swapfile2 bs=1024M count=1
+  397  cat /proc/misc 
+  398  cat /etc/motd 
+  399  cat /etc/modprobe.d/tuned.conf 
+  400  cat /etc/modprobe.d/dccp-blacklist.conf 
+  401  cat /etc/modprobe.d/firewalld-sysctls.conf 
+  402  lsmod 
+  403  ifcon 
+  404  ifconfig
+  405  ip a
+  406  lsmod  | grep eth0
+  407  lsmod  | less
+  408  ls -l /dev/
+  409  ls -l /var/lib/rpm
+  410  kduzu
+  411  rpm -qf /etc/modprobe.d/nofloppy.conf 
+  412  rpm -qf /etc/passwd
+  413  rpm -qa | less 
+  414  rpm -qf elfutils-libelf-0.172-2.el7.x86_64
+  415  rpm -K elfutils-libelf-0.172-2.el7.x86_64
+  416  rpm -k elfutils-libelf-0.172-2.el7.x86_64
+  417  neat
+  418  lspci -tv
+  419  lspci --help
+  420  lspci -tv -nn
+  421  who
+  422  route -n 
+  423  ifcon
+  424  ipa 
+  425  ip a
+  426  cat /etc/sysconfig/network
+  427  cat /etc/sysconfig/network-scripts/
+  428  ls -l  /etc/sysconfig/network-scripts/
+  429  cat  /etc/sysconfig/network-scripts/ifcfg-eth0
+  430  cd 1-Ansible-Master/project-lemp/
+  431  cat hosts 
+  432  ssh ram@192.168.0.105 -i id.rsa 
+  433  ssh ram@192.168.0.106 -i id.rsa 
+  434  vi hosts 
+  435  ssh ram@192.168.0.105 -i id.rsa 
+  436  ssh ram@192.168.0.106 -i id.rsa 
+  437  ssh ram@192.168.0.110 -i id.rsa 
+  438  ls -l
+  439  cd 1-Ansible-Master/
+  440  ls -l
+  441  cd training/
+  442  ls -l
+  443  cd 4/
+  444  ls -l
+  445  cd ..
+  446  ifcon
+  447  ifconfig
+  448  ip a
+  449  ls -l
+  450  mkdir project-lemp
+  451  cd project-lemp/
+  452  ls -l
+  453  touch  hosts site.yml
+  454  mkdir -p roles
+  455  cd roles/
+  456  ansible-galaxy init common 
+  457  ansible-galaxy init web
+  458  ansible-galaxy init db
+  459  tree .
+  460  tree
+  461  yum install tree
+  462  tree .
+  463  cd ..
+  464  vi hosts 
+  465  vi site.yml 
+  466  ls -l
+  467  cd roles/
+  468  cd common/
+  469  vim tasks/main.yml 
+  470  vi  tasks/main.yml 
+  471  cd ..
+  472  cd web/
+  473  vim tasks/main.yml 
+  474  vi  tasks/main.yml 
+  475  cd ..
+  476  cd web/
+  477  vim handlers/main.yml 
+  478  vi  handlers/main.yml 
+  479  cd ..
+  480  ls -l
+  481  cd web/
+  482  vim vars/main.yml 
+  483  vi  vars/main.yml 
+  484  vim templates/index.php.j2
+  485  vi  templates/index.php.j2
+  486  vi  templates/vhost.j2
+  487  cd ../db/
+  488  vi tasks/main.yml 
+  489  vim handlers/main.yml 
+  490  yum install vim
+  491  vim handlers/main.yml 
+  492  vim vars/main.yml 
+  493  cd ..
+  494  ifcon
+  495  ipa 
+  496  ip a
+  497  ping 192.168.0.105
+  498  cd ..
+  499  vi site.yml 
+  500  vi hosts 
+  501  ansible-playbook -i hosts  site.yml 
+  502  vi /root/1-Ansible-Master/project-lemp/roles/web/tasks/main.yml
+  503  ansible-playbook -i hosts  site.yml 
+  504  vi /root/1-Ansible-Master/project-lemp/roles/web/tasks/main.yml
+  505  ansible-playbook -i hosts  site.yml 
+  506  ping 192.168.0.105
+  507  ssh  192.168.0.105
+  508  ls -l .s
+  509  ls -al ~/.ssh/
+  510  ls -al ~/.ssh/id_rsa
+  511  cat  ~/.ssh/id_rsa
+  512  ls -l
+  513  cd ..
+  514  ls -l
+  515  cd project-lemp/
+  516  ansible-playbook -i hosts  site.yml  --key-file ~/.ssh/id_rsa
+  517  vi id.ras
+  518  ansible-playbook -i hosts  site.yml  --key-file id.ras 
+  519  ls -l 
+  520  chmod  644 id.ras 
+  521  ls -l
+  522  mv id.ras id.rsa
+  523  chmod 600 id.rsa 
+  524  ansible-playbook -i hosts  site.yml  --key-file id.ras 
+  525  ansible-playbook -i hosts  site.yml  --key-file id.rsa 
+  526  ansible module timezone
+  527  ls -l
+  528  vi roles/common/meta/
+  529  ls -l roles/common/
+  530  ls -l roles/common/defaults/main.yml 
+  531  vim  roles/common/defaults/main.yml 
+  532  ansible-playbook -i hosts  site.yml  --key-file id.rsa 
+  533  vim  roles/common/tasks/main.yml 
+  534  vim  roles/common/defaults/main.yml 
+  535  vim  roles/common/tasks/main.yml 
+  536  ansible-playbook -i hosts  site.yml  --key-file id.rsa 
+  537  yum install nginx
+  538  yum repolsit
+  539  yum repo list
+  540  yum repolist
+  541  yum install epel
+  542  yum install epel-repo
+  543  yum install epel*
+  544  ansible-playbook -i hosts  site.yml  --key-file id.rsa 
+  545  vim  roles/web/tasks/main.yml 
+  546  ansible-playbook -i hosts  site.yml  --key-file id.rsa 
+  547  ansible-playbook -i hosts  site.yml  --key-file id.rsa  -vvv
+  548  cat hosts 
+  549  ssh ram@192.168.0.105 -i id.rsa 
+  550  ansible-playbook -i hosts  site.yml  --key-file id.rsa  
+  551  vi roles/web/vars/main.yml 
+  552  vi roles/web/tasks/main.yml 
+  553  ansible-playbook -i hosts  site.yml  --key-file id.rsa  
+  554  vi hosts 
+  555  ansible-playbook -i hosts  site.yml  --key-file id.rsa  
+  556  cat hosts 
+  557  vi roles/web/tasks/main.yml 
+  558  ansible-playbook -i hosts  site.yml  --key-file id.rsa  
+  559  vi roles/db/tasks/main.yml 
+  560  ansible-playbook -i hosts  site.yml  --key-file id.rsa  
+  561  vi roles/db/tasks/main.yml 
+  562  ansible-playbook -i hosts  site.yml  --key-file id.rsa  
+  563  vi roles/db/tasks/main.yml 
+  564  ansible-playbook -i hosts  site.yml  --key-file id.rsa  
+  565  cat hosts 
+  566  vi roles/db/tasks/main.yml 
+  567  ansible-playbook -i hosts  site.yml  --key-file id.rsa  
+  568  cd ..
+  569  pwd
+  570  cd 1-Ansible-Master/
+  571  ls -l
+  572  git log
+  573  git status 
+  574  git add project-lemp/
+  575  git log
+  576  git status 
+  577  history 
+  578  history  >> historycontent 
+  579  git add *
+  580  git status 
+  581  git commit -a -m " Added project LEMP"
+  582  git status 
+  583  git push origin master 
+  584  git pull
+  585  git push origin master 
+  586  init 0
+  587  cd 1-Ansible-Master/
+  588  ls -l
+  589  git pull
+  590  ansible hostname -m setup
+  591  ansible -m setup hostname
+  592  ansible -m setup localhost
+  593  ls l
+  594  ls -l
+  595  cd project-lemp/
+  596  ls -l
+  597  cd roles/
+  598  cd web/
+  599  ls -l
+  600  cd tasks/
+  601  ls -l
+  602  vim main.yml 
+  603  cd 1-Ansible-Master/
+  604  git pull
+  605  git log
+  606  ls -l 
+  607  cd project-lemp/
+  608  ls -l
+  609  cat hosts 
+  610  ping 192.168.10.100
+  611  ansible --version
+  612  vi roles/web/tasks/main.yml 
+  613  vim  roles/web/tasks/main.yml 
+  614  cd ..
+  615  history  >> historycontent 
+  616  git pull
+  617  git push 
+  618  git commit -m "Modified history content"
+  619  git commit -a -m "Modified history content"
+  620  git pull
+  621  git log
+  622  git checkout  historycontent
+  623  git status 
+  624  git pull
+  625  git commit -a -m "Removed history content due to conflit"
+  626  git pull
+  627  ls -l
+  628  cat historycontent 
+  629  history  >> historycontent_personalpc
