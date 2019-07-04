@@ -2,21 +2,35 @@
 # tasks file for web
 
 
+
+
+- name: Install Zabbix-repo
+  yum:
+   name: https://repo.zabbix.com/zabbix/4.0/rhel/6/x86_64/zabbix-release-4.0-1.el6.noarch.rpm
+   state: latest
+
+
+
+- name: Install Zabbix-Agent
+  yum:
+   #name: zabbix-agent-4.0.10-1.el6
+   name: https://repo.zabbix.com/zabbix/4.0/rhel/6/x86_64/zabbix-agent-4.0.10-1.el6.x86_64.rpm
+   state: present
+   allow_downgrade: yes
+
 - name: Create a new host or update an existing host's info
   local_action:
     module: zabbix_host
     server_url: http://192.168.0.105/zabbix
     login_user: zabbix
     login_password: admin
-    host_name: ExampleHost
+    host_name: "{{ ansible_nodename }}"
     visible_name: ExampleName
     description: My ExampleHost Description
     host_groups:
       - Example group1
-      - Example group2
     link_templates:
       - Example template1
-      - Example template2
     status: enabled
     state: present
     inventory_mode: manual
@@ -26,56 +40,15 @@
       notes: "Special Informations: {{ your_informations | default('None') }}"
       location: "{{ your_location }}"
       site_rack: "{{ your_site_rack }}"
-      os: "{{ your_os }}"
-      hardware: "{{ your_hardware }}"
-    ipmi_authtype: 2
-    ipmi_privilege: 4
-    ipmi_username: username
-    ipmi_password: password
+      os: "{{ ansible_distribution }}"
+      hardware: "{{ ansible_virtualization_type }}"
     interfaces:
       - type: 1
         main: 1
         useip: 1
-        ip: 10.xx.xx.xx
+        ip: "{{ ansible_default_ipv4.address }}"
         dns: ""
         port: 10050
-      - type: 4
-        main: 1
-        useip: 1
-        ip: 10.xx.xx.xx
-        dns: ""
-        port: 12345
-    proxy: a.zabbix.proxy
-- name: Update an existing host's TLS settings
-  local_action:
-    module: zabbix_host
-    server_url: http://monitor.example.com
-    login_user: username
-    login_password: password
-    host_name: ExampleHost
-    visible_name: ExampleName
-    host_groups:
-      - Example group1
-    tls_psk_identity: test
-    tls_connect: 2
-    tls_psk: 123456789abcdef123456789abcdef12
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 - name: Install epel-release

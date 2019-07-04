@@ -4,4 +4,9 @@
 
 php_version: 5.3
 domain_name: hakase-labs.io
+your_tag: MY_Sample_Server
+your_alias: MY_Sample_Server_Alias
+your_location: Virtual Mechine1
+your_site_rack: Virtual Mechine1-rack1
+
 
